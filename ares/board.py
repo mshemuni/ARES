@@ -51,7 +51,7 @@ class Board:
         self.original[x][y] = value
 
     def __other(self, value):
-        return int(not bool(value))
+        return (value + 1) % 2
 
     def __check_gap(self, data, i):
         return data[i] == data[i + 2] and np.isnan(data[i + 1])
@@ -83,7 +83,7 @@ class Board:
 
     def solve(self):
         while np.isnan(self.board).any():
-            for i in range(len(self.board)):
+            for i in range(self.number):
 
                 if np.isnan(self.board[i]).any():
                     if np.isnan(self.board[i]).sum() == 2:
